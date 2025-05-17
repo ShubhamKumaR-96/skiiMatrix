@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# skiiMatrix
+
 ##  Creating a course selling app 
 =======
 # SkillMint - Course Selling Platform
