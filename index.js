@@ -5,6 +5,7 @@ const { courseRouter } = require("./src/routes/courseRoutes");
 const { connectDb } = require("./src/config/dbConfig");
 
 const app = express();
+app.use(express.json())
 
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/admin", adminRouter);
