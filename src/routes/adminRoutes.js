@@ -47,7 +47,7 @@ adminRouter.post("/signin", async (req, res) => {
       return res.status(400).json({ error: "admin not found" });
     }
 
-    const adminPassIsMatched = await bcrypt.compare(password, admin.password);
+    const adminPassIsMatched = await  bcrypt.compare(password, admin.password);
     if (!adminPassIsMatched) {
       return res.status(400).json({
         error: "invalid password",

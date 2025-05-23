@@ -3,41 +3,18 @@ const { Schema } = mongoose;
 
 
 const userSchema=new Schema({
-    email:{type :String,unique:true},
-    password:String,
-    firstName:String,
-    lastName:String
+    email:{type :String,unique:true,required:true,index:true},
+    password:{type:String,required:true},
+    firstName:{type:String,required:true},
+    lastName:{type:String,required:true},
+    role:{type:String,default:"user",enum:["user","guest"]},
+    purchases:[{type:Schema.Types.ObjectId,ref:"purchase"}]
     
-})
-const adminSchema=new Schema({
-    email:{type :String,unique:true},
-    password:String,
-    firstName:String,
-    lastName:String
+},{timestamps:true})
 
-})
-const courseSchema=new Schema({
-    title:String,
-    description:String,
-    price:Number,
-    imageUrl:String,
-    creatorId:Schema.Types.ObjectId,
-
-})
-const purchaseSchema=new Schema({
-    userId:Schema.Types.ObjectId,
-    courseId:Schema.Types.ObjectId,
-
-})
 
 const userModel = mongoose.model("user", userSchema);
-const adminModel = mongoose.model("admin", adminSchema);
-const courseModel = mongoose.model("course", courseSchema);
-const purchaseModel = mongoose.model("purchase", purchaseSchema);
 
 module.exports={
     userModel,
-    adminModel,
-    courseModel,
-    purchaseModel
-}
+  }
