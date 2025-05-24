@@ -2,11 +2,15 @@ const mongoose = require("mongoose");
 
  async function connectDb() {
   try {
-    await mongoose.connect("mongodb://localhost:27017/course-selling-app");
-    console.log("connected to db");
+    if (mongoose.connection.readyState===1){
+      console.log("Already connected to MongoDb")
+    return;
+    }
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("Successfully connected to db");
   } catch (error) {
-    console.log("failed to connect")
-    throw error
+    console.log("failed to connect to MONGO-DB" , error.message)
+    process.exit(1);
   }
 }
 
